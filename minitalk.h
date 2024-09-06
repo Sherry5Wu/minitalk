@@ -1,10 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minitalk.h                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jingwu <jingwu@student.hive.fi>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/06 11:53:47 by jingwu            #+#    #+#             */
+/*   Updated: 2024/09/06 11:53:56 by jingwu           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MINITALK_H
 # define MINITALK_H
 
 # include <signal.h>
 # include <sys/types.h>
-//# include <unistd.h>
-//# include <stdlib.h>
 # include <stdbool.h>
 # include "libft/include/libft.h"
 # include "libft/include/ft_printf.h"
