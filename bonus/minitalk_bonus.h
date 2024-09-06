@@ -6,8 +6,8 @@
 //# include <unistd.h>
 //# include <stdlib.h>
 # include <stdbool.h>
-# include "../libft/include/libft.h"
-# include "../libft/include/ft_printf.h"
+# include "./libft/include/libft.h"
+# include "./libft/include/ft_printf.h"
 
 # define TIMEOUT_MICROSECOND (100000)
 

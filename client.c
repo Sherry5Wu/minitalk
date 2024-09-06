@@ -6,7 +6,7 @@
 /*   By: jingwu <jingwu@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 10:52:51 by jingwu            #+#    #+#             */
-/*   Updated: 2024/09/05 10:48:25 by jingwu           ###   ########.fr       */
+/*   Updated: 2024/09/06 11:41:09 by jingwu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,26 @@ static void	ack_handler(int	signal)
 
 /*
 	This function will just send one byte to the server.
+	After sending one byte, it will wait for g_ack signal from server, if the waitting
+	time is longer than 10 seconds, it will show time out error and exit the program.
 */
 static int	send_byte(pid_t pid, char c)
 {
-	size_t	bite;
+	int	bit;
 
-	bite = 7;
-	while (bite <=0)
+	bit = (sizeof(char) * 8) - 1;
+	while (bit >=0)
 	{
-		if (((c >> bite) | 1) == 1)
+		if (((c >> bit) & 1) == 1)
 		{
 			if (kill(pid, SIGUSR1) == -1)
 				return (-1);
 		}
 		else
+		{
 			if (kill(pid, SIGUSR2) == -1)
 				return (-1);
+		}
 		while(!g_ack)
 		{
 			usleep(TIMEOUT_MICROSECOND);
@@ -44,7 +48,7 @@ static int	send_byte(pid_t pid, char c)
 				exit_msg("Time out. Singal from server is missing.");
 		}
 		g_ack = 0;
-		bite--;
+		bit--;
 	}
 	return (0);
 }
@@ -53,9 +57,9 @@ static int	send_byte(pid_t pid, char c)
 	This function is for seperate messages into char, then call send_byte()
 	to send each char.
 */
-static void	send(pid_t pid, void *str, size_t size)
+static void	send(pid_t pid, void *str, int size)
 {
-	size_t	i;
+	int	i;
 	char	byte;
 
 	i = 0;
@@ -69,38 +73,12 @@ static void	send(pid_t pid, void *str, size_t size)
 }
 /*
 	After get the server PID, should check if it is valid first before using it.
-
-	kill()fucntion:
-	description:
-		The kill() system call can be used to send any signal to any
-       process group or process.
-
-       If pid is positive, then signal sig is sent to the process with
-       the ID specified by pid.
-
-       If pid equals 0, then sig is sent to every process in the process
-       group of the calling process.
-
-       If pid equals -1, then sig is sent to every process for which the
-       calling process has permission to send signals, except for
-       process 1 (init), but see below.
-
-       If pid is less than -1, then sig is sent to every process in the
-       process group whose ID is -pid.
-
-       If sig is 0, then no signal is sent, but existence and permission
-       checks are still performed; this can be used to check for the
-       existence of a process ID or process group ID that the caller is
-       permitted to signal.
-	return value:
-		On success (at least one signal was sent), zero is returned. On
-       error, -1 is returned, and errno is set to indicate the error.
 */
 int	main(int ac, char **av)
 {
 	pid_t	sv_pid;
-	int32_t	i;
-	size_t	size_msg;
+	int	i;
+	int	size_msg;
 
 	i = 0;
 	if (ac != 3)
@@ -111,10 +89,10 @@ int	main(int ac, char **av)
 		exit_msg("Server PID is invalid!");
 	if (!av[2][0])
 		exit_msg("No message needed to be sent.");
-	ft_printf("Sending message to server %d...\n", sv_pid);
 	size_msg = ft_strlen(av[2]) + 1;
+	ft_printf("Sending %d chars to server %d...\n", (size_msg - 1), sv_pid);
 	send(sv_pid, &size_msg, sizeof(size_msg));
 	send(sv_pid, av[2], size_msg);
-	ft_printf("Done!Good Job!\n");
+	ft_printf("Server received the message successfully!\n");
 	exit(0);
 }

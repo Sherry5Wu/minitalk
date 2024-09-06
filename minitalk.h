@@ -9,7 +9,7 @@
 # include "libft/include/libft.h"
 # include "libft/include/ft_printf.h"
 
-# define TIMEOUT_MICROSECOND (100000)
+# define TIMEOUT_MICROSECOND (10000000)
 
 typedef struct s_client
 {

@@ -46,9 +46,10 @@ $(LIBFT):
 	make -C $(LIBFT_DIR)
 
 %.o: %.c
-	@mkdir -p $(@D)
 	@$(CC) $(FLAGS) $(HEADERS) -c $< -o $@
 	@echo "Compiling: $(notdir $<)"
+
+#---------------------------------------------------------------------------------------------------------
 
 client: $(LIBFT) $(CLIENT_OBJS)
 	@$(CC) $(FLAGS) $(CLIENT_OBJS) $(LIBFT) -o $@
@@ -70,16 +71,19 @@ server_bonus: $(LIBFT) $(BONUS_SERVER_OBJS)
 	@$(CC) $(FLAGS) $(LIBFT) $(BONUS_SERVER_OBJS) -o $@
 	@echo "$(GREEN)Server_bonus has been generated!"$(DEFAULT)"
 
-bonus: .bonus
-.bonus: $(applications_bonus)
+bonus: .bonus $(applications_bonus)
+	@touch .bonus
+
+.bonus:
+	@if [ -f $(NAME_C) ] || [ -f $(NAME_S) ]; then \
+		$(MAKE) fclean; \
+	fi
 
 #---------------------------------------------------------------------------------------------------------
 
 clean:
 	@make clean -C $(LIBFT_DIR)
 	@$(RM) $(CLIENT_OBJS) $(SERVER_OBJS) $(BONUS_CLIENT_OBJS) $(BONUS_SERVER_OBJS)
-	@rmdir $(OBJS_DIR) 2> /dev/null || true
-	@rmdir $(BONUS_OBJS_DIR) 2> /dev/null || true
 	@$(RM) .bonus
 	@echo "$(GREEN)OBJS are cleaned!$(DEFAULT)"
 
