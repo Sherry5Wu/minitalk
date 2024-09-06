@@ -29,6 +29,9 @@
 		On success (at least one signal was sent), zero is returned. On
        error, -1 is returned, and errno is set to indicate the error.
 
+# Tester
+
+https://github.com/ThibaudM13/minitalk-Tester
 
 # Resources
 
