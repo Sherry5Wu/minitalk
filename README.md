@@ -3,9 +3,9 @@
 
 # Used functions
 
-kill():
+	kill():
         Descrition:
-		    The kill() system call can be used to send any signal to any
+        The kill() system call can be used to send any signal to any
         process group or process.
 
        If pid is positive, then signal sig is sent to the process with
