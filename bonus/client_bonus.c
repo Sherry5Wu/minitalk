@@ -90,9 +90,9 @@ int	main(int ac, char **av)
 	if (!av[2][0])
 		exit_msg("No message needed to be sent.");
 	size_msg = ft_strlen(av[2]) + 1;
-	ft_printf("Sending %d chars to server %d...\n", (size_msg - 1), sv_pid);
+	ft_printf(G"Sending %d chars to server %d...\n"R, (size_msg - 1), sv_pid);
 	send(sv_pid, &size_msg, sizeof(size_msg));
 	send(sv_pid, av[2], size_msg);
-	ft_printf("Server received the message successfully!\n");
+	ft_printf(G"Server received the message successfully!\n"R);
 	exit(0);
 }
