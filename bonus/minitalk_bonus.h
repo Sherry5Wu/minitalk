@@ -19,7 +19,10 @@
 # include "libft.h"
 # include "ft_printf.h"
 
-# define TIMEOUT_MICROSECOND (10000000)
+# define TIMEOUT_MICROSECOND 	(10000000)
+# define G			"\033[1;92m"
+# define R			"\033[0;39m"
+# define RD			"\033[1;31m"
 
 typedef struct s_client
 {
