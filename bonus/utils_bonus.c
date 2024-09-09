@@ -16,7 +16,7 @@ void	exit_msg(char *message)
 {
 	if (message)
 	{
-		ft_printf("%s\n", message);
+		ft_printf(RD"%s\n"R, message);
 	}
 	exit(1);
 }
