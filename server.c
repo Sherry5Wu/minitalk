@@ -69,11 +69,11 @@ static void	receive_print_msg(int size)
 	message[size - 1] = '\0';
 	if (receive_msg(message, size) == true)
 	{
-		ft_printf("Recevied %d chars from a client.\n", (size - 1));
+		ft_printf(G"Recevied %d chars from a client.\n"R, (size - 1));
 		ft_printf("%s\n", message);
 	}
 	else
-		ft_printf("Timeout. The client's signal may be missing.\n");
+		ft_printf(RD"Timeout. The client's signal may be missing.\n"R);
 	free(message);
 }
 
@@ -103,7 +103,7 @@ int	main(void)
 	if(sigaction(SIGUSR1, &action, NULL) < 0 ||
 		sigaction(SIGUSR2, &action, NULL) < 0)
 			exit_msg("Fail to handle signal!");
-	ft_printf("Server PID: %d\n", getpid());
+	ft_printf(G"Server PID: %d\n"R, getpid());
 	while (1)
 	{
 		g_client.pid = 0;
