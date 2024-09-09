@@ -64,12 +64,12 @@ all: $(applications)
 #---------------------------------------------BONUS-------------------------------------------------------
 
 client_bonus: $(LIBFT) $(BONUS_CLIENT_OBJS)
-	@$(CC) $(FLAGS) $(LIBFT) $(BONUS_CLIENT_OBJS) -o $@
-	@echo "$(GREEN)Client_bonus has been generated!"$(DEFAULT)"
+	@$(CC) $(FLAGS) $(BONUS_CLIENT_OBJS) $(LIBFT) -o $@
+	@echo "$(GREEN)Client_bonus has been generated!$(DEFAULT)"
 
 server_bonus: $(LIBFT) $(BONUS_SERVER_OBJS)
-	@$(CC) $(FLAGS) $(LIBFT) $(BONUS_SERVER_OBJS) -o $@
-	@echo "$(GREEN)Server_bonus has been generated!"$(DEFAULT)"
+	@$(CC) $(FLAGS) $(BONUS_SERVER_OBJS) $(LIBFT) -o $@
+	@echo "$(GREEN)Server_bonus has been generated!$(DEFAULT)"
 
 bonus: .bonus $(applications_bonus)
 	@touch .bonus

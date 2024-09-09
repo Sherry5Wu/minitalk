@@ -6,7 +6,7 @@
 /*   By: jingwu <jingwu@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/03 10:52:51 by jingwu            #+#    #+#             */
-/*   Updated: 2024/09/06 11:41:09 by jingwu           ###   ########.fr       */
+/*   Updated: 2024/09/09 11:43:48 by jingwu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,12 @@ static int	send_byte(pid_t pid, char c)
 }
 
 /*
-	This function is for seperate messages into char, then call send_byte()
+	This function is for seperate messages size_to char, then call send_byte()
 	to send each char.
 */
 static void	send(pid_t pid, void *str, int size)
 {
-	int	i;
+	int		i;
 	char	byte;
 
 	i = 0;
@@ -77,8 +77,8 @@ static void	send(pid_t pid, void *str, int size)
 int	main(int ac, char **av)
 {
 	pid_t	sv_pid;
-	int	i;
-	int	size_msg;
+	int		i;
+	int		size_msg;
 
 	i = 0;
 	if (ac != 3)

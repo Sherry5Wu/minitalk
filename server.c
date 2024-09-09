@@ -6,7 +6,7 @@
 /*   By: jingwu <jingwu@student.hive.fi>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 08:02:00 by jingwu            #+#    #+#             */
-/*   Updated: 2024/09/06 11:08:38 by jingwu           ###   ########.fr       */
+/*   Updated: 2024/09/09 11:43:56 by jingwu           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	receive_byte(void)
 static bool	receive_msg(void *str, int size)
 {
 	int	i;
-	int		receive_char;
+	int	receive_char;
 
 	ft_bzero(str, size);
 	i = 0;
