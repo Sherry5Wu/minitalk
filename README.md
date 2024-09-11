@@ -13,6 +13,10 @@ Separating a string to characters(in sedn() function), then send a character bit
 
 Every time after sending a bit to server, the client will wait if the server receive it successfully (by checking the value of g_ack),
 
+if the server receive it  successfully, then the client will send next bit to server; otherwise, the client will wait 10s, the prompt
+
+time out error message.
+
 # Key used functions
 
 To finish this project, fully understanding sigaction() and kill() functions are required.
