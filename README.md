@@ -4,7 +4,7 @@ The purpose of this project is to code a small data exchange program using UNIX 
 
 # Key used functions
 
-To finish this project, fully understanding sigaction() and kill() functions are reqired.
+To finish this project, fully understanding sigaction() and kill() functions are required.
 
 ## sigaction()
 
