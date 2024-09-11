@@ -2,6 +2,17 @@
 
 The purpose of this project is to code a small data exchange program using UNIX signals. 
 
+# Code logic
+
+## client side
+Send the size of the string first, then send the string;
+
+How to send a string?
+
+Separating a string to characters(in sedn() function), then send a character bit by bit (in send_byte() function).
+
+Every time after sending a bit to server, the client will wait if the server receive it successfully (by checking the value of g_ack),
+
 # Key used functions
 
 To finish this project, fully understanding sigaction() and kill() functions are required.
