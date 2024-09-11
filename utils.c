@@ -20,3 +20,10 @@ void	exit_msg(char *message)
 	}
 	exit(1);
 }
+
+t_client	*g_client(void)
+{
+	static t_client		g_client;
+
+	return (&g_client);
+}
