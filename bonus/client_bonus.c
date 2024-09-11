@@ -87,8 +87,6 @@ int	main(int ac, char **av)
 	sv_pid = (pid_t)ft_atoi(av[1]);
 	if (kill(sv_pid, 0) == -1)
 		exit_msg("Server PID is invalid!");
-	if (!av[2][0])
-		exit_msg("No message needed to be sent.");
 	size_msg = ft_strlen(av[2]) + 1;
 	ft_printf(G"Sending %d chars to server %d...\n"R, (size_msg - 1), sv_pid);
 	send(sv_pid, &size_msg, sizeof(size_msg));
