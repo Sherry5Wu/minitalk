@@ -12,8 +12,6 @@
 
 #include "minitalk_bonus.h"
 
-static t_client	g_client;
-
 static int	receive_byte(void)
 {
 	int	byte;
@@ -23,17 +21,17 @@ static int	receive_byte(void)
 	bit = (sizeof(char) * 8) - 1;
 	while (bit >= 0)
 	{
-		while (!g_client.singal)
+		while (!g_client()->singal)
 		{
 			usleep(TIMEOUT_MICROSECOND);
-			if (!g_client.singal)
+			if (!g_client()->singal)
 				return (-1);
 		}
-		if (g_client.singal == SIGUSR1)
+		if (g_client()->singal == SIGUSR1)
 			byte |= 1 << bit;
 		bit--;
-		g_client.singal = 0;
-		kill(g_client.pid, SIGUSR1);
+		g_client()->singal = 0;
+		kill(g_client()->pid, SIGUSR1);
 	}
 	return (byte);
 }
@@ -80,10 +78,10 @@ static void	receive_print_msg(int size)
 static void	signal_handler(int signum, siginfo_t *info, void *context)
 {
 	(void)context;
-	if (g_client.pid == 0)
-		g_client.pid = info->si_pid;
-	if (g_client.pid == info->si_pid)
-		g_client.singal = signum;
+	if (g_client()->pid == 0)
+		g_client()->pid = info->si_pid;
+	if (g_client()->pid == info->si_pid)
+		g_client()->singal = signum;
 }
 
 int	main(void)
@@ -106,7 +104,7 @@ int	main(void)
 	ft_printf(G"Server PID: %d\n"R, getpid());
 	while (1)
 	{
-		g_client.pid = 0;
+		g_client()->pid = 0;
 		size_msg = 0;
 		flag_msg = receive_msg(&size_msg, sizeof(size_msg));
 		if (flag_msg == true && size_msg)
