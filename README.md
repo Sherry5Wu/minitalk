@@ -11,14 +11,17 @@ To finish this project, fully understanding sigaction() and kill() functions are
 	SYNOPSIS:
  		#include <signal.h>
 
-       		int sigaction(int signum, const struct sigaction *_Nullable restrict act, struct sigaction *_Nullable restrict oldact);
+       		int sigaction(int signum, const struct sigaction *_Nullable restrict act, 
+	 		struct sigaction *_Nullable restrict oldact);
 	
 	DESCRIPTION:
-  		The sigaction() system call is used to change the action taken by a process on receipt of a specific signal. 
+  		The sigaction() system call is used to change the action taken 
+    		by a process on receipt of a specific signal. 
 
     		-- signum specifies the signal and can be any valid signal except SIGKILL and SIGSTOP.
 
-      		-- If act is non-NULL, the new action for signal signum is installed from act.  If oldact is non-NULL, the previous action is saved in
+      		-- If act is non-NULL, the new action for signal signum is 
+		installed from act.  If oldact is non-NULL, the previous action is saved in
        		   oldact.
 
        		-- The sigaction structure is defined as something like:
