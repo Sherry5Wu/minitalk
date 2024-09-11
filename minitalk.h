@@ -31,5 +31,6 @@ typedef struct s_client
 }	t_client;
 
 void	exit_msg(char *message);
+t_client	*g_client(void);
 
 #endif
