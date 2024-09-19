@@ -125,6 +125,7 @@ https://jameshfisher.com/2017/01/13/c-sigaction/
 
 # My score
 
-https://man7.org/linux/man-pages/man2/sigaction.2.html
+
+![Screenshot from 2024-09-19 13-49-58](https://github.com/user-attachments/assets/fef240cf-17b7-44e9-b06e-b0c478b5bb96)
 
 
