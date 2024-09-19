@@ -133,6 +133,9 @@ https://jameshfisher.com/2017/01/13/c-sigaction/
 *All 42 projects must be written in C (later C++) in accordance to the 42 School Norm.
 
 Sample restrictions:
-All variables have to be declared and aligned at the top of each function
-Each function can not have more then 25 lines
-Projects should be created with allowed std functions otherwise it is cheating
+
+-- All variables have to be declared and aligned at the top of each function
+
+-- Each function can not have more then 25 lines
+
+-- Projects should be created with allowed std functions otherwise it is cheating
