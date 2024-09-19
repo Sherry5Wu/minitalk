@@ -128,4 +128,11 @@ https://jameshfisher.com/2017/01/13/c-sigaction/
 
 ![Screenshot from 2024-09-19 13-49-58](https://github.com/user-attachments/assets/fef240cf-17b7-44e9-b06e-b0c478b5bb96)
 
+# 42 projects rules
 
+*All 42 projects must be written in C (later C++) in accordance to the 42 School Norm.
+
+Sample restrictions:
+All variables have to be declared and aligned at the top of each function
+Each function can not have more then 25 lines
+Projects should be created with allowed std functions otherwise it is cheating
