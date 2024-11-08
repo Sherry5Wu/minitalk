@@ -9,13 +9,17 @@ The purpose of this project is to code a small data exchange program using UNIX 
 	
 	How to send a string to server?
 	
-	Separating a string to characters(in sedn() function), then send a character bit by bit (in send_byte() function).
+	Separating a string to characters(in sedn() function), then send a character bit by bit 
+ 
+ 	(in send_byte() function).
 	
-	Every time after sending a bit to server, the client will wait if the server receive it successfully (by checking the value of g_ack),
-	
-	if the server receive it  successfully, then the client will send next bit to server; otherwise, the client will wait 10s, the prompt
-	
-	time out error message.
+	Every time after sending a bit to server, the client will wait if the server receive it 
+ 
+ 	successfully (by checking the value of g_ack), if the server receive it  successfully, 
+  
+  	then the client will send next bit to server; otherwise, the client will wait 10s, the 
+
+	prompt time out error message.
 	
 	# Key used functions
 	
@@ -23,18 +27,19 @@ The purpose of this project is to code a small data exchange program using UNIX 
 
 ## 2. server side
 
-	Server will receive  message as bit by bit , then saving bits into a byte, then saving the byte into a str. After receiving all the 
- 	characters, print the messsage out.
+	Server will receive  message as bit by bit , then saving bits into a byte, then saving the 
+ 
+ 	byte into a str. After receiving all the characters, print the messsage out.
 	
 
 ## sigaction()
 
 	SYNOPSIS:
- 		#include <signal.h>
-
-       		int sigaction(int signum, const struct sigaction *_Nullable restrict act, 
-	 		struct sigaction *_Nullable restrict oldact);
-	
+ ```c
+	#include <signal.h>
+	int sigaction(int signum, const struct sigaction *_Nullable restrict act, 
+		struct sigaction *_Nullable restrict oldact);
+```
 	DESCRIPTION:
   		The sigaction() system call is used to change the action taken 
     		by a process on receipt of a specific signal. 
