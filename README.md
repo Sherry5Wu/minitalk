@@ -39,7 +39,7 @@ The sigaction() system call is used to change the action taken by a process on r
    oldact.
 
 -- The sigaction structure is defined as something like:
-
+```c
    struct sigaction {
        void     (*sa_handler)(int);
        void     (*sa_sigaction)(int, siginfo_t *, void *);
@@ -47,62 +47,52 @@ The sigaction() system call is used to change the action taken by a process on r
        int        sa_flags;
        void     (*sa_restorer)(void);
    };
-The sa_restorer field is not intended for application use.
-(POSIX does not specify a sa_restorer field.)  Some further
-details of the purpose of this field can be found in
+```
+The sa_restorer field is not intended for application use.(POSIX does not specify a sa_restorer field.)  Some further details of the purpose of this field can be found in
+
 sigreturn(2).
 
-sa_handler specifies the action to be associated with signum and
-can be one of the following:
+sa_handler specifies the action to be associated with signum and can be one of the following:
 
 •  SIG_DFL for the default action.
 
 •  SIG_IGN to ignore this signal.
 
-•  A pointer to a signal handling function.  This function
-  receives the signal number as its only argument.
+•  A pointer to a signal handling function.  This function receives the signal number as its only argument.
 
-If SA_SIGINFO is specified in sa_flags, then sa_sigaction
-(instead of sa_handler) specifies the signal-handling function
-for signum.  This function receives three arguments, as described
-below.
+If SA_SIGINFO is specified in sa_flags, then sa_sigaction (instead of sa_handler) specifies the signal-handling function for signum.  This function receives three arguments, 
 
-sa_mask specifies a mask of signals which should be blocked
-(i.e., added to the signal mask of the thread in which the signal
-handler is invoked) during execution of the signal handler.  In
-addition, the signal which triggered the handler will be blocked,
-unless the SA_NODEFER flag is used.
+as described below.
 
-sa_flags specifies a set of flags which modify the behavior of
-	       the signal.
+sa_mask specifies a mask of signals which should be blocked (i.e., added to the signal mask of the thread in which the signal handler is invoked) during execution of the 
+
+signal handler.  In addition, the signal which triggered the handler will be blocked, unless the SA_NODEFER flag is used.
+
+sa_flags specifies a set of flags which modify the behavior of the signal.
 
 
 ## kill()
 
-        Descrition:
-        The kill() system call can be used to send any signal to any
-        process group or process.
+Descrition:
+The kill() system call can be used to send any signal to any process group or process.
 
-       If pid is positive, then signal sig is sent to the process with
-       the ID specified by pid.
+If pid is positive, then signal sig is sent to the process with the ID specified by pid.
 
-       If pid equals 0, then sig is sent to every process in the process
-       group of the calling process.
+If pid equals 0, then sig is sent to every process in the process group of the calling process.
 
-       If pid equals -1, then sig is sent to every process for which the
-       calling process has permission to send signals, except for
-       process 1 (init), but see below.
+If pid equals -1, then sig is sent to every process for which the calling process has permission to send signals, except for process 1 (init), but see below.
 
-       If pid is less than -1, then sig is sent to every process in the
-       process group whose ID is -pid.
+If pid is less than -1, then sig is sent to every process in the process group whose ID is -pid.
 
-       If sig is 0, then no signal is sent, but existence and permission
-       checks are still performed; this can be used to check for the
-       existence of a process ID or process group ID that the caller is
-       permitted to signal.
-	return value:
-		On success (at least one signal was sent), zero is returned. On
-       error, -1 is returned, and errno is set to indicate the error.
+If sig is 0, then no signal is sent, but existence and permission checks are still performed; this can be used to check for the existence of a process ID or 
+
+process group ID that the caller is permitted to signal.
+
+return value:
+
+On success (at least one signal was sent), zero is returned. 
+ 
+On error, -1 is returned, and errno is set to indicate the error.
 
 # Tester
 
