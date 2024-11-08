@@ -5,38 +5,30 @@ The purpose of this project is to code a small data exchange program using UNIX 
 # Code logic
 
 ## 1. client side
-Send the size of the string first, then send the string;
+Send the size of the string first, then send the string.
 
 How to send a string to server?
 
 Separating a string to characters(in sedn() function), then send a character bit by bit (in send_byte() function).
 
-Every time after sending a bit to server, the client will wait if the server receive it 
+Every time after sending a bit to server, the client will wait if the server receive it successfully (by checking the value of g_ack), if the server receive it  successfully, 
 
-successfully (by checking the value of g_ack), if the server receive it  successfully, 
+then the client will send next bit to server; otherwise, the client will wait 10s, the prompt time out error message.
 
-then the client will send next bit to server; otherwise, the client will wait 10s, the 
+## 2. server side
 
-prompt time out error message.
+Server will receive  message as bit by bit , then saving bits into a byte, then saving the  byte into a str. After receiving all the characters, print the messsage out.
 
 # Key used functions
 
 To finish this project, fully understanding sigaction() and kill() functions are required.
 
-## 2. server side
-
-Server will receive  message as bit by bit , then saving bits into a byte, then saving the 
- 
- byte into a str. After receiving all the characters, print the messsage out.
-	
-
 ## sigaction()
 
 SYNOPSIS:
  ```c
-	#include <signal.h>
-	int sigaction(int signum, const struct sigaction *_Nullable restrict act, 
-		struct sigaction *_Nullable restrict oldact);
+#include <signal.h>
+int sigaction(int signum, const struct sigaction *_Nullable restrict act, struct sigaction *_Nullable restrict oldact);
 ```
 	DESCRIPTION:
   		The sigaction() system call is used to change the action taken 
