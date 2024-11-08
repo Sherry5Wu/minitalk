@@ -30,52 +30,50 @@ SYNOPSIS:
 #include <signal.h>
 int sigaction(int signum, const struct sigaction *_Nullable restrict act, struct sigaction *_Nullable restrict oldact);
 ```
-	DESCRIPTION:
-  		The sigaction() system call is used to change the action taken 
-    		by a process on receipt of a specific signal. 
+DESCRIPTION:
+The sigaction() system call is used to change the action taken by a process on receipt of a specific signal. 
 
-    		-- signum specifies the signal and can be any valid signal except SIGKILL and SIGSTOP.
+-- signum specifies the signal and can be any valid signal except SIGKILL and SIGSTOP.
 
-      		-- If act is non-NULL, the new action for signal signum is 
-		installed from act.  If oldact is non-NULL, the previous action is saved in
-       		   oldact.
+-- If act is non-NULL, the new action for signal signum is installed from act.  If oldact is non-NULL, the previous action is saved in
+   oldact.
 
-       		-- The sigaction structure is defined as something like:
+-- The sigaction structure is defined as something like:
 
-	           struct sigaction {
-	               void     (*sa_handler)(int);
-	               void     (*sa_sigaction)(int, siginfo_t *, void *);
-	               sigset_t   sa_mask;
-	               int        sa_flags;
-	               void     (*sa_restorer)(void);
-	           };
-	    	The sa_restorer field is not intended for application use.
-	        (POSIX does not specify a sa_restorer field.)  Some further
-	       details of the purpose of this field can be found in
-	       sigreturn(2).
-	
-	       sa_handler specifies the action to be associated with signum and
-	       can be one of the following:
-	
-	       •  SIG_DFL for the default action.
-	
-	       •  SIG_IGN to ignore this signal.
-	
-	       •  A pointer to a signal handling function.  This function
-	          receives the signal number as its only argument.
-	
-	       If SA_SIGINFO is specified in sa_flags, then sa_sigaction
-	       (instead of sa_handler) specifies the signal-handling function
-	       for signum.  This function receives three arguments, as described
-	       below.
-	
-	       sa_mask specifies a mask of signals which should be blocked
-	       (i.e., added to the signal mask of the thread in which the signal
-	       handler is invoked) during execution of the signal handler.  In
-	       addition, the signal which triggered the handler will be blocked,
-	       unless the SA_NODEFER flag is used.
-	
-	       sa_flags specifies a set of flags which modify the behavior of
+   struct sigaction {
+       void     (*sa_handler)(int);
+       void     (*sa_sigaction)(int, siginfo_t *, void *);
+       sigset_t   sa_mask;
+       int        sa_flags;
+       void     (*sa_restorer)(void);
+   };
+The sa_restorer field is not intended for application use.
+(POSIX does not specify a sa_restorer field.)  Some further
+details of the purpose of this field can be found in
+sigreturn(2).
+
+sa_handler specifies the action to be associated with signum and
+can be one of the following:
+
+•  SIG_DFL for the default action.
+
+•  SIG_IGN to ignore this signal.
+
+•  A pointer to a signal handling function.  This function
+  receives the signal number as its only argument.
+
+If SA_SIGINFO is specified in sa_flags, then sa_sigaction
+(instead of sa_handler) specifies the signal-handling function
+for signum.  This function receives three arguments, as described
+below.
+
+sa_mask specifies a mask of signals which should be blocked
+(i.e., added to the signal mask of the thread in which the signal
+handler is invoked) during execution of the signal handler.  In
+addition, the signal which triggered the handler will be blocked,
+unless the SA_NODEFER flag is used.
+
+sa_flags specifies a set of flags which modify the behavior of
 	       the signal.
 
 
