@@ -1,21 +1,48 @@
 # minitalk
 
-The purpose of this project is to code a small data exchange program using UNIX signals. 
+The purpose of this project is to code a small data exchange program using UNIX signals.
 
-# Code logic
+## How to Run?
 
-## 1. client side
+### Step 1: Clone the project
+Copy the below commands into your terminal<br>
+```bash
+git clone https://github.com/Sherry5Wu/minitalk.git minitalk && cd minitalk
+```
+### Step 2: make
+Make for server, this will generate a server
+```bash
+Make server
+```
+Make for client, this will generate a client
+```bash
+Make client
+```
+### Step 3: Start to use
+Start the server side first:
+```bash
+./server
+```
+Then start the client with server PID and message, like "`./client <server PID> <messages>`", for example:
+```bash
+./client 1201386 "hello Server, I am one of your client"
+```
+You can start multiple clients sending messages to the server.
+
+## Code logic
+
+### 1. client side
 Send the size of the string first, then send the string.
 
 How to send a string to server?
 
 Separating a string to characters(in sedn() function), then send a character bit by bit (in send_byte() function).
 
-Every time after sending a bit to server, the client will wait if the server receive it successfully (by checking the value of g_ack), if the server receive it  successfully, 
+Every time after sending a bit to server, the client will wait if the server receive it successfully (by checking the value of g_ack), if the server receive it  successfully,
 
 then the client will send next bit to server; otherwise, the client will wait 10s, the prompt time out error message.
 
-## 2. server side
+### 2. server side
 
 Server will receive  message as bit by bit , then saving bits into a byte, then saving the  byte into a str. After receiving all the characters, print the messsage out.
 
@@ -23,7 +50,7 @@ Server will receive  message as bit by bit , then saving bits into a byte, then 
 
 To finish this project, fully understanding sigaction() and kill() functions are required.
 
-## sigaction()
+### sigaction()
 
 SYNOPSIS:
  ```c
@@ -31,7 +58,7 @@ SYNOPSIS:
 int sigaction(int signum, const struct sigaction *_Nullable restrict act, struct sigaction *_Nullable restrict oldact);
 ```
 DESCRIPTION:
-The sigaction() system call is used to change the action taken by a process on receipt of a specific signal. 
+The sigaction() system call is used to change the action taken by a process on receipt of a specific signal.
 
 -- signum specifies the signal and can be any valid signal except SIGKILL and SIGSTOP.
 
@@ -60,18 +87,18 @@ sa_handler specifies the action to be associated with signum and can be one of t
 
 •  A pointer to a signal handling function.  This function receives the signal number as its only argument.
 
-If SA_SIGINFO is specified in sa_flags, then sa_sigaction (instead of sa_handler) specifies the signal-handling function for signum.  This function receives three arguments, 
+If SA_SIGINFO is specified in sa_flags, then sa_sigaction (instead of sa_handler) specifies the signal-handling function for signum.  This function receives three arguments,
 
 as described below.
 
-sa_mask specifies a mask of signals which should be blocked (i.e., added to the signal mask of the thread in which the signal handler is invoked) during execution of the 
+sa_mask specifies a mask of signals which should be blocked (i.e., added to the signal mask of the thread in which the signal handler is invoked) during execution of the
 
 signal handler.  In addition, the signal which triggered the handler will be blocked, unless the SA_NODEFER flag is used.
 
 sa_flags specifies a set of flags which modify the behavior of the signal.
 
 
-## kill()
+### kill()
 
 Descrition:
 The kill() system call can be used to send any signal to any process group or process.
@@ -84,21 +111,21 @@ If pid equals -1, then sig is sent to every process for which the calling proces
 
 If pid is less than -1, then sig is sent to every process in the process group whose ID is -pid.
 
-If sig is 0, then no signal is sent, but existence and permission checks are still performed; this can be used to check for the existence of a process ID or 
+If sig is 0, then no signal is sent, but existence and permission checks are still performed; this can be used to check for the existence of a process ID or
 
 process group ID that the caller is permitted to signal.
 
 return value:
 
-On success (at least one signal was sent), zero is returned. 
- 
+On success (at least one signal was sent), zero is returned.
+
 On error, -1 is returned, and errno is set to indicate the error.
 
-# Tester
+## Tester
 
 https://github.com/ThibaudM13/minitalk-Tester
 
-# Resources
+## Resources
 
 https://42-cursus.gitbook.io/guide/rank-02/minitalk
 
@@ -106,12 +133,12 @@ https://man7.org/linux/man-pages/man2/sigaction.2.html
 
 https://jameshfisher.com/2017/01/13/c-sigaction/
 
-# My score
+## My score
 
 
 ![Screenshot from 2024-09-19 13-49-58](https://github.com/user-attachments/assets/fef240cf-17b7-44e9-b06e-b0c478b5bb96)
 
-# 42 projects rules
+## 42 projects rules
 
 *All 42 projects must be written in C (later C++) in accordance to the 42 School Norm.
 
